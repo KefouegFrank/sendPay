@@ -16,7 +16,7 @@ export const Intro = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsWaiting(false);
-    }, 1000);
+    }, 3000);
 
     const random = Math.random();
 
@@ -35,12 +35,15 @@ export const Intro = () => {
 
   useEffect(() => {
     if (isWaiting) {
-      return;
+      return; // Don't navigate while waiting
     }
-    if (onboarding) {
-      navigation.navigate("Main", {});
-    } else {
-      navigation.navigate("Onboarding", {});
+    if (onboarding !== null) {
+      // Check if onboarding state is set
+      if (onboarding) {
+        navigation.navigate("Login", {}); // Navigate to Onboarding
+      } else {
+        navigation.navigate("Onboarding", {}); // Navigate to Onboarding (for now)
+      }
     }
   }, [isWaiting, onboarding, navigation]);
 

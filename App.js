@@ -1,24 +1,47 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Intro } from "./app/screens/Intro";
 import { Login } from "./app/screens/Login";
-import { Onboarding } from "./app/screens/Onboarding";
+import Onboarding from "./app/screens/Onboarding"; // Correct import
+
+const Stack = createStackNavigator();
 
 const App = () => {
-  const Stack = createStackNavigator();
+  //   const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
+
+  //   useEffect(() => {
+  //     async function checkAppFirstLaunch() {
+  //       try {
+  //         const appData = await AsyncStorage.getItem("isAppFirstLaunched");
+  //         console.log(appData);
+  //         if (appData === null) {
+  //           // If the app is launched for the first time, navigate to Intro
+  //           setIsAppFirstLaunched(true);
+  //           await AsyncStorage.setItem("isAppFirstLaunched", "false");
+  //         } else {
+  //           // If not the first launch, navigate to Onboarding
+  //           setIsAppFirstLaunched(false);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error checking app first launch:", error);
+  //       }
+  //     }
+
+  //     checkAppFirstLaunch();
+  //   }, []);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Intro">
+      <Stack.Navigator>
         <Stack.Screen
           name="Intro"
           component={Intro}
           options={{ headerShown: false }}
         />
-
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
@@ -33,6 +56,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
 const styles = StyleSheet.create({});
 export default App;
