@@ -1,70 +1,60 @@
-import { View, Text, StyleSheet } from "react-native";
-import React, { useState, useEffect } from "react";
-import { Animated, ImageBackground } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Animated,
+  Image,
+  Text,
+  View,
+  Dimensions,
+  ImageBackground,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import splash1 from "../../assets/images/splash1.png";
 import { useNavigation } from "@react-navigation/native";
-
-const MINIMUM_TIME_IN_MS_FOR_INTRO = 200;
+import styles from "../Styles/IntroStyles";
 
 export const Intro = () => {
   const [isWaiting, setIsWaiting] = useState(true);
   const [onboarding, setOnboarding] = useState(false);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const navigation = useNavigation();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    setTimeout(() => {
       setIsWaiting(false);
-    }, 3000);
+    }, 5000); // Increase the delay to 5000 milliseconds (5 seconds)
 
-    const random = Math.random();
+    Animated.timing(fadeAnim, {
+      duration: 2000,
+      toValue: 1,
+      useNativeDriver: false,
+    }).start(() => {
+      // Animation completed, navigate to the next screen
+      navigateToNextScreen();
+    });
+  }, [fadeAnim]);
 
-    // Fake call
-    if (random < 0.5) {
-      // 50% of the time we fake onboarding successful
-      setOnboarding(true);
-    } else {
-      setOnboarding(false); // 50% of the time we fake onboarding unsuccessful
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isWaiting) {
-      return; // Don't navigate while waiting
-    }
-    if (onboarding !== null) {
-      // Check if onboarding state is set
-      if (onboarding) {
-        navigation.navigate("Login", {}); // Navigate to Onboarding
-      } else {
-        navigation.navigate("Onboarding", {}); // Navigate to Onboarding (for now)
-      }
-    }
-  }, [isWaiting, onboarding, navigation]);
+  const navigateToNextScreen = () => {
+    // You can implement logic here to decide which screen to navigate to
+    // For now, I'll navigate to the "Onboarding" screen
+    navigation.navigate("Onboarding", {});
+  };
 
   return (
-    <SafeAreaView style={style.container}>
-      <Animated.View>
-        <ImageBackground source={splash1} style={style.image}></ImageBackground>
-      </Animated.View>
-    </SafeAreaView>
+    <ImageBackground source={splash1} style={styles.backgroundImage}>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <Image source={splash1} style={styles.image}></Image>
+        </View>
+        <Animated.View style={[styles.logoContainer, { opacity: fadeAnim }]}>
+          <Text style={[styles.logoText, styles.firstText]}>send</Text>
+          <Animated.Text
+            style={[styles.logoText, styles.secondText, { opacity: fadeAnim }]}
+          >
+            Pay
+          </Animated.Text>
+        </Animated.View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    display: "flex",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: 150,
-    height: 150,
-  },
-});
