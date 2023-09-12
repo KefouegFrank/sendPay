@@ -5,8 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Intro } from "./app/screens/Intro";
-import { Login } from "./app/screens/Login";
-import Onboarding from "./app/screens/Onboarding"; // Correct import
+import Onboarding from "./app/screens/Onboarding";
+import PhoneNumberInputScreen from "./app/screens/PhoneNumberInputScreen ";
+import OTPVerificationScreen from "./app/screens/OTPVerificationScreen";
 
 const Stack = createStackNavigator();
 
@@ -47,9 +48,15 @@ const App = () => {
           component={Onboarding}
           options={{ headerShown: false }}
         />
+
         <Stack.Screen
-          name="Login"
-          component={Login}
+          name="PhoneNumberInputScreen"
+          component={PhoneNumberInputScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="OTPVerificationScreen"
+          component={OTPVerificationScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
