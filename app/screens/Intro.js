@@ -22,7 +22,7 @@ export const Intro = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsWaiting(false);
-    }, 5000); // Increase the delay to 5000 milliseconds (5 seconds)
+    }, 50000); // Increase the delay to 5000 milliseconds (5 seconds)
 
     Animated.timing(fadeAnim, {
       duration: 2000,

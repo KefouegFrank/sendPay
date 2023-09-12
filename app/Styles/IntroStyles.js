@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   backgroundImage: {
     flex: 1, // Cover the entire screen
-    resizeMode: "cover", // Cover image resizing mode
+    resizeMode: "cover",
   },
   container: {
     flex: 1,
@@ -25,6 +25,6 @@ export default StyleSheet.create({
     color: "#ffffff", // Text color
   },
   firstText: {
-    marginRight: 5, // Add some spacing between the texts
+    marginRight: 2,
   },
 });
