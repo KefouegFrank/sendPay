@@ -62,7 +62,7 @@ const Onboarding = ({ navigation }) => {
   const handleNext = () => {
     if (currentSlideIndex === slides.length - 1) {
       // If on the last slide, navigate to the GET STARTED screen
-      navigation.navigate("Login"); // Replace "GetStarted" with the appropriate screen name
+      navigation.navigate("PhoneNumberInputScreen"); // Replace "GetStarted" with the appropriate screen name
     } else {
       // If not on the last slide, increment the slide index to go to the next slide
       setCurrentSlideIndex(currentSlideIndex + 1);
@@ -118,7 +118,7 @@ const Onboarding = ({ navigation }) => {
             <View style={{ height: 50 }}>
               <TouchableOpacity
                 style={[styles.btn]}
-                onPress={() => navigation.replace("Login")}
+                onPress={() => navigation.replace("PhoneNumberInputScreen")}
               >
                 <Text style={{ fontWeight: "bold", fontSize: 15 }}>
                   GET STARTED
