@@ -35,6 +35,12 @@ const slides = [
     title: "Best Digital Solution",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", // Corrected typo in "Lorem ipsum..."
   },
+  {
+    id: "4",
+    image: require("../../assets/images/6270.jpg"),
+    title: "Best Digital Solution",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", // Corrected typo in "Lorem ipsum..."
+  },
 ];
 const Slide = ({ item }) => {
   return (
