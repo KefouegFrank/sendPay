@@ -8,6 +8,7 @@ import { Intro } from "./app/screens/Intro";
 import Onboarding from "./app/screens/Onboarding";
 import PhoneNumberInputScreen from "./app/screens/PhoneNumberInputScreen ";
 import OTPVerificationScreen from "./app/screens/OTPVerificationScreen";
+import Login from "./app/screens/Login";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,11 @@ const App = () => {
         <Stack.Screen
           name="OTPVerificationScreen"
           component={OTPVerificationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
